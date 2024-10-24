@@ -1,35 +1,77 @@
+import FontAwesome from '@expo/vector-icons/FontAwesome';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { Tabs } from 'expo-router';
-import React from 'react';
-
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { View } from 'react-native';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-      }}>
+    <Tabs screenOptions={{ tabBarActiveTintColor: 'blue' }}>
       <Tabs.Screen
         name="index"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
-          ),
+          tabBarIcon: ({ color, focused }) => {
+            return <View style={focused ? {
+              backgroundColor: 'white',
+              borderWidth: 2,
+              borderColor: 'blue',
+              bottom: 20,
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: 50,
+              height: 50,
+              padding: 5,
+              borderRadius: 30
+            } : null}>
+              <MaterialCommunityIcons name="home" size={28} color={color} />
+            </View>
+          }
+        }}
+      />
+
+      <Tabs.Screen
+        name="profiles"
+        options={{
+          title: 'Profile',
+          tabBarIcon: ({ color, focused }) => {
+            return <View style={focused ? {
+              backgroundColor: 'white',
+              borderWidth: 2,
+              borderColor: 'blue',
+              bottom: 20,
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: 50,
+              height: 50,
+              padding: 5,
+              borderRadius: 30
+            } : null}>
+              <FontAwesome size={28} name="user" color={color} />
+            </View>
+          }
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="settings"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
-          ),
+          title: 'Settings',
+          tabBarIcon: ({ color, focused }) => {
+            return <View style={focused ? {
+              backgroundColor: 'white',
+              borderWidth: 2,
+              borderColor: 'blue',
+              bottom: 20,
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: 50,
+              height: 50,
+              padding: 5,
+              borderRadius: 30
+            } : null}>
+
+              <FontAwesome size={28} name="cog" color={color} />
+            </View>
+          }
         }}
       />
     </Tabs>
